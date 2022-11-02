@@ -56,6 +56,7 @@ All sessions and applications that run in the Science Portal have filesystem acc
 - Using the storage management UI in CANFAR: https://www.canfar.net/storage/arc/list
 - Using the [CADC Python libraries](https://github.com/opencadc/vostools/tree/master/vos)
 - Using sshfs [documentation](https://github.com/canfar/arcade/tree/master/arcade-tutorial)
+- Using the `/arc/files` endpoint [documentation](https://ws-uv.canfar.net/arc)
 
 Please take care to protect sensitive information by ensuring it is not publicly accessible.
 
@@ -246,5 +247,7 @@ General inquiries can be made to [support@canfar.net](mailto:support@canfar.net)
     * The session could be in a Pending state waiting for resources so that it can be scheduled.
     * More information about the reason for the Pending state can be found using the logging mechanisms explained in [Programmatic Access](#programmatic-access).
 
+* ***How do I test a graphical container on my Mac?***
+   * See the instructions to have container display shown on your Mac here:  [Display ENV on OSX](DISPLAY_ENV_ON_OSX.md)
 
 ![canfar](canfar-logo.png)
