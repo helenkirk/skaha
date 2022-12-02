@@ -1,14 +1,15 @@
 # uses python2.6
 VERSIONS2.6 = \
-	34.0.19988-002-64b \
+#	34.0.19988-002-64b \
 	40.0.22208-002-64b \
 	40.1.22889-003-64b \
 	41.0.24668-001-64b-2
+#NB: will need to do something different for the casa3.4 version with repo_base
 
 # uses python2.7
 VERSIONS = \
-	42.0.28322-021-1-64b \
-	42.1.29047-001-1-64b \
+	42.0.28322-021-1-64b #\
+#	42.1.29047-001-1-64b \
 	42.2.30986-1-64b \
 	42.2.30986-pipe-1-64b
 
@@ -18,7 +19,8 @@ VERSIONS = \
 #VERSIONS = \
 #	42.2.30986-pipe-1-64b
 
-DOCKER_REPO_BASE=images.canfar.net/arcade/casa
+#DOCKER_REPO_BASE=images.canfar.net/arcade/casa
+DOCKER_REPO_BASE=images.canfar.net/casa-4/casa
 
 .PHONY: build clean run 
 

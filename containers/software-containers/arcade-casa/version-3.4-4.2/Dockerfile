@@ -4,17 +4,31 @@ FROM centos:5
 # perl was added for casa later than 5
 
 # Override old repo info with current urls
-RUN rm /etc/yum.repos.d/CentOS-Base.repo
+# NB: this revised process is completely eliminating two of the original repos
+# which are CentOS-Media.repo, for configuring CD installation, and 
+# CentOS-Vault.repo, which provides urls for all previous versions of 
+# CentOS 5 (current versiou here is 5.10)
+# Default baseurl also no longer seems to work with yum, however, one
+# of the other mirror sites, http://archive.kernel.org/centos-vault does
+RUN rm /etc/yum.repos.d/*
 ADD CentOS-Base.repo /etc/yum.repos.d/
+ADD CentOS-Debuginfo.repo /etc/yum.repos.d/
+ADD CentOS-Sources.repo /etc/yum.repos.d/
+ADD CentOS-fasttrack.repo /etc/yum.repos.d/
+ADD libselinux.repo /etc/yum.repos.d/
 
 RUN yum clean all -y
-RUN yum makecache -y
+#commented out - likely unnecessary?
+#RUN yum makecache -y
 RUN yum update -y
 
 RUN yum install -y freetype libSM libXi libXrender libXrandr \
 	libXfixes libXcursor libXinerama fontconfig \
 	libxslt xauth xorg-x11-server-Xvfb dbus-x11 \
-	tkinter ImageMagick-c++ xterm perl
+	tkinter xterm perl
+#separating for debugging
+#try w/o this package, as is not working :(
+#RUN yum install -y ImageMagick-c++
 
 # setup all required env variables
 ARG CASA_RELEASE
@@ -52,4 +66,6 @@ ADD nsswitch.conf /etc/
 
 RUN chmod -R a+rwx /skaha
 
-ENTRYPOINT [ "/skaha/startup.sh" ]
+#HK updated below
+#ENTRYPOINT [ "/skaha/startup.sh" ]
+CMD [ "/skaha/init.sh" ]
